@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    //public AudioSource[] musics;
-    public AudioClip[] musics;
+    public AudioClip music;
 
     public FloatVariable volume;
 
@@ -13,34 +12,22 @@ public class SoundManager : MonoBehaviour
     void Awake()
     {
         audio = GetComponent<AudioSource>();
-        volume.value = 0f;
-        PlayMusic(true);
-    }
-
-    void Update()
-    {
-        
+        audio.volume = 0f;
+        PlayMusic();
     }
 
     IEnumerator LoopMusic()
     {
-        
+
         yield return new WaitForSeconds(16.1f);
         audio.Stop();
-        PlayMusic(true);
+        PlayMusic();
 
     }
 
-    public void PlayMusic(bool loop)
+    public void PlayMusic()
     {
-        
-        foreach (AudioClip music in musics)
-        {
-            
-            //audio.clip = music;
-            audio.PlayOneShot(music, volume.value);
-        }
-        if(loop)
-            StartCoroutine(LoopMusic());
+        audio.Play();
+        StartCoroutine(LoopMusic());
     }
 }

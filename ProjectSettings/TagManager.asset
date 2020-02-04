@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - SoundManager
+  - 1violin
+  - 2violin
+  - bass
+  - pianoL
+  - pianoR
+  - viola
   layers:
   - Default
   - TransparentFX
@@ -15,8 +21,8 @@ TagManager:
   - 
   - 
   - Particle
-  - Area
-  - 
+  - Effector
+  - ResizeCircle
   - 
   - 
   - 
@@ -39,11 +45,11 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Effector
+    uniqueID: 3970300549
+    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Area
-    uniqueID: 3970300549
     locked: 0
   - name: Particle
     uniqueID: 3791777449

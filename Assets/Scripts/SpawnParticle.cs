@@ -25,7 +25,7 @@ public class SpawnParticle : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(m_delaySpawn);
-            Vector2 RandomPositionInArea = Random.insideUnitCircle * m_areaSpawn;
+            Vector2 RandomPositionInArea = new Vector2(transform.position.x, transform.position.y) + Random.insideUnitCircle * m_areaSpawn;
             _particle = Instantiate(m_particle, RandomPositionInArea, Quaternion.identity);
             _rbParticle = _particle.GetComponent<Rigidbody2D>();
             _rbParticle.AddForce(new Vector2(1, 1) * m_forceIntensity);
