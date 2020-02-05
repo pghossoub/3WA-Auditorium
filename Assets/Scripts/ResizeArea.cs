@@ -9,7 +9,7 @@ public class ResizeArea : MonoBehaviour
     public BoolVariable isDragging;
 
     private Camera _mainCamera;
-    private Vector2 _mousePositionStart;
+    //private Vector2 _mousePositionStart;
     private Vector2 _mousePosition;
     private RaycastHit2D _hit;
     //private bool resizing;
@@ -28,8 +28,8 @@ public class ResizeArea : MonoBehaviour
 
             if (Input.GetButton("Fire2"))
             {
-                if (!isResizing.value)
-                    _mousePositionStart = _mousePosition;
+                /*if (!isResizing.value)
+                    _mousePositionStart = _mousePosition;*/
 
                 RaycastHit2D hit = Physics2D.Raycast(
                             _mousePosition,
@@ -54,11 +54,19 @@ public class ResizeArea : MonoBehaviour
 
     private void ResizeCircleArea(Transform trObject)
     {
-        float distance = Vector2.Distance(_mousePositionStart, _mousePosition);
+        /*
+        Vector2 diff = _mousePositionStart + (Vector2)trObject.position;
+        _mousePositionStart = diff;
+        _mousePosition += diff;
+        */
+
+        //float distance = Vector2.Distance(_mousePositionStart, _mousePosition);
+        float distance = Vector2.Distance(trObject.parent.position, _mousePosition);
 
         Vector2 newScale = new Vector2(distance, distance);
+        //Vector2 newScale = new Vector2(Mathf.Max(_mousePosition.x, _mousePosition.y), Mathf.Max(_mousePosition.x, _mousePosition.y));
 
-        if (newScale.x > 1)
+        if (newScale.x > 0.85 && newScale.x < 2)
             trObject.localScale = newScale;
     }
 }

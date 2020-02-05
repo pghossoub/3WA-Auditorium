@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioClip music;
-
-    public FloatVariable volume;
-
     private new AudioSource audio;
     void Awake()
     {

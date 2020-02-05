@@ -11,6 +11,7 @@ TagManager:
   - pianoL
   - pianoR
   - viola
+  - Particles
   layers:
   - Default
   - TransparentFX

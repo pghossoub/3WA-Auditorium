@@ -23,7 +23,7 @@ public class DragDrop : MonoBehaviour
         {
             if (Input.GetButton("Fire1"))
             {
-                Debug.Log("Drag");
+                //Debug.Log("Drag");
                 Vector2 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
 
@@ -36,8 +36,10 @@ public class DragDrop : MonoBehaviour
                             );
 
                 if (hit.collider != null)
+                {
                     isDragging.value = true;
-                ObjectFollowMouse(mousePosition, hit.collider.transform);
+                    ObjectFollowMouse(mousePosition, hit.collider.transform);
+                }
 
             }
             else
@@ -50,11 +52,4 @@ public class DragDrop : MonoBehaviour
         Vector3 mousePosition3D = new Vector3(mousePosition.x, mousePosition.y, 0f);
         trObject.position = mousePosition3D;
     }
-
-    /*
-    private void ResizeCircleArea(Vector2 mousePositionStart, Transform trObject)
-    {
-        mousePositionStart - 
-    }
-    */
 }

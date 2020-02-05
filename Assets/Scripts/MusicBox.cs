@@ -16,7 +16,7 @@ public class MusicBox : MonoBehaviour
     {
         _audioSource = GameObject.FindGameObjectWithTag(musicName).GetComponent<AudioSource>();
 
-        foreach(GameObject bar in bars)
+        foreach (GameObject bar in bars)
         {
             bar.SetActive(false);
         }
@@ -52,8 +52,10 @@ public class MusicBox : MonoBehaviour
         int i = 1;
         foreach (GameObject bar in bars)
         {
-            if (_audioSource.volume * 10 >= i)
+            bar.SetActive(false);
+            if (_audioSource.volume * 10 >= i - 1)
                 bar.SetActive(true);
+
             i++;
         }
     }
