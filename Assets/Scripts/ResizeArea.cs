@@ -7,6 +7,7 @@ public class ResizeArea : MonoBehaviour
     public LayerMask m_circleLayerMask;
     public BoolVariable isResizing;
     public BoolVariable isDragging;
+    public BoolVariable won;
 
     private Camera _mainCamera;
     //private Vector2 _mousePositionStart;
@@ -22,7 +23,7 @@ public class ResizeArea : MonoBehaviour
 
     void Update()
     {
-        if (!isDragging.value)
+        if (!isDragging.value && !won.value)
         {
             _mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
 

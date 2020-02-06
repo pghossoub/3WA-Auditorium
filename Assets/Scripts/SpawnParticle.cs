@@ -31,7 +31,7 @@ public class SpawnParticle : MonoBehaviour
             _particle = Instantiate(m_particle, RandomPositionInArea, Quaternion.identity, _trParticles);
             _rbParticle = _particle.GetComponent<Rigidbody2D>();
             //_rbParticle.AddForce(new Vector2(1, 1) * m_forceIntensity);
-            _rbParticle.velocity = new Vector2(1, 1) * m_velocity;
+            _rbParticle.velocity = transform.right * m_velocity;
 
         }
     }

@@ -8,6 +8,7 @@ public class DragDrop : MonoBehaviour
     //public LayerMask m_circleLayerMask;
     public BoolVariable isResizing;
     public BoolVariable isDragging;
+    public BoolVariable won;
 
     private Camera _mainCamera;
     private Transform objectToDrag;
@@ -53,10 +54,13 @@ public class DragDrop : MonoBehaviour
 
     private void Update()
     {
-        Vector2 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        OnDrag(mousePosition);
-        OnDown(mousePosition);
-        OnUp(mousePosition);
+        if (!won.value)
+        {
+            Vector2 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            OnDrag(mousePosition);
+            OnDown(mousePosition);
+            OnUp(mousePosition);
+        }
 
     }
 

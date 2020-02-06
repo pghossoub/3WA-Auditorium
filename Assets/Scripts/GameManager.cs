@@ -5,15 +5,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 
 {
+    public static GameManager instance = null;
+
     public GameObject fadePanel;
     public GameObject fadePanelContent;
-    //public Animator anim;
     public GameObject soundManager;
     public BoolVariable won;
+    public int countMusicBoxToWin = 6;
+
 
     private AudioSource[] audioSources;
     private int countMusicBox;
-    private int countMusicBoxToWin = 6;
     private Animator anim;
 
 
