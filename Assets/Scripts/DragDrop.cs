@@ -10,6 +10,7 @@ public class DragDrop : MonoBehaviour
     public BoolVariable isDragging;
 
     private Camera _mainCamera;
+    private Transform objectToDrag;
 
     private void Awake()
     {
@@ -17,8 +18,10 @@ public class DragDrop : MonoBehaviour
         isDragging.value = false;
     }
 
-    private void Update()
+    /*private void Update()
     {
+        //Vector2 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
         if (!isResizing.value)
         {
             if (Input.GetButton("Fire1"))
@@ -37,6 +40,7 @@ public class DragDrop : MonoBehaviour
 
                 if (hit.collider != null)
                 {
+                    //objectToDrag = hit.transform;
                     isDragging.value = true;
                     ObjectFollowMouse(mousePosition, hit.collider.transform);
                 }
@@ -45,11 +49,59 @@ public class DragDrop : MonoBehaviour
             else
                 isDragging.value = false;
         }
+    }*/
+
+    private void Update()
+    {
+        Vector2 mousePosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        OnDrag(mousePosition);
+        OnDown(mousePosition);
+        OnUp(mousePosition);
+
     }
 
+    /*
     private void ObjectFollowMouse(Vector2 mousePosition, Transform trObject)
     {
         Vector3 mousePosition3D = new Vector3(mousePosition.x, mousePosition.y, 0f);
         trObject.position = mousePosition3D;
+    }
+    */
+
+    private void OnDrag(Vector2 mousePosition)
+    {
+        if (Input.GetButton("Fire1") && objectToDrag != null)
+        {
+            objectToDrag.position = mousePosition;
+        }
+    }
+
+    private void OnDown(Vector2 mousePosition)
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            RaycastHit2D hit;
+            hit = Physics2D.Raycast(
+                        mousePosition,
+                        Vector2.zero,
+                        Mathf.Infinity,
+                        m_effectorLayerMask
+                        );
+
+            if (hit.collider != null)
+            {
+                objectToDrag = hit.transform;
+                isDragging.value = true;
+            }
+        }
+    }
+
+    private void OnUp(Vector2 mousePosition)
+    {
+        if (Input.GetButtonUp("Fire1"))
+        {
+            objectToDrag = null;
+            isDragging.value = false;
+        }
     }
 }

@@ -24,7 +24,7 @@ TagManager:
   - Particle
   - Effector
   - ResizeCircle
-  - 
+  - Bars
   - 
   - 
   - 
@@ -46,11 +46,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Effector
-    uniqueID: 3970300549
+  - name: Background
+    uniqueID: 2339714563
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bars
+    uniqueID: 3530984303
+    locked: 0
+  - name: Effector
+    uniqueID: 3970300549
     locked: 0
   - name: Particle
     uniqueID: 3791777449

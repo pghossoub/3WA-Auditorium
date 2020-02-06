@@ -28,8 +28,6 @@ public class ResizeArea : MonoBehaviour
 
             if (Input.GetButton("Fire2"))
             {
-                /*if (!isResizing.value)
-                    _mousePositionStart = _mousePosition;*/
 
                 RaycastHit2D hit = Physics2D.Raycast(
                             _mousePosition,
