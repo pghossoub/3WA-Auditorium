@@ -9,15 +9,18 @@ public class GameManager : MonoBehaviour
 
     public GameObject fadePanel;
     public GameObject fadePanelContent;
+    public GameObject endPanel;
+
     public GameObject soundManager;
     public BoolVariable won;
-    public int countMusicBoxToWin = 6;
+    public IntVariable currentLevel;
+    public Level[] levels;
 
 
     private AudioSource[] audioSources;
     private int countMusicBox;
     private Animator anim;
-
+    
 
     void Start()
     {
@@ -36,11 +39,17 @@ public class GameManager : MonoBehaviour
                 if (audioSource.volume == 1)
                     countMusicBox++;
             }
-            if (countMusicBox >= countMusicBoxToWin)
+            //Debug.Log(levels[currentLevel.value - 1].nbMusicBoxes);
+            if (countMusicBox >= levels[currentLevel.value - 1].nbMusicBoxes)
             {
                 won.value = true;
                 Win();
             }
+        }
+
+        else
+        {
+            SetVolumeTo(1);
         }
     }
 
@@ -53,14 +62,24 @@ public class GameManager : MonoBehaviour
     {
         anim.SetTrigger("Won");
         yield return new WaitForSeconds(5.0f);
-        fadePanelContent.SetActive(true);
+        if (currentLevel.value < levels.Length)
+            fadePanelContent.SetActive(true);
+        else
+            endPanel.SetActive(true);
     }
 
 
 
-    public void InitiateRemoveWonPanel()
+    public void InitiateNextLevel()
     {
         StartCoroutine(RemoveWonPanel());
+
+        won.value = false;
+        SetVolumeTo(0);
+
+        Loader loader = GameObject.FindGameObjectWithTag("Loader").GetComponent<Loader>();
+        loader.NextLevel();
+        
     }
 
     private IEnumerator RemoveWonPanel()
@@ -68,5 +87,13 @@ public class GameManager : MonoBehaviour
         fadePanelContent.SetActive(false);
         anim.SetTrigger("NextLevel");
         yield return new WaitForSeconds(5.0f);
+    }
+
+    private void SetVolumeTo(float volume)
+    {
+        foreach (AudioSource audioSource in audioSources)
+        {
+            audioSource.volume = volume;
+        }
     }
 }

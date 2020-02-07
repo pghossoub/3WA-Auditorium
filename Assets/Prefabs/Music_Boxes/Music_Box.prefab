@@ -371,8 +371,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicName: bass
-  volumePerParticle: 0.01
-  volumeLoss: 0.005
+  volumePerParticle: 0.05
+  volumeLoss: 0.02
   m_volume: {fileID: 11400000, guid: e9a44ac72be626448a63f68ff2be6654, type: 2}
   bars:
   - {fileID: 6254893517741521720}

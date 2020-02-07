@@ -12,6 +12,7 @@ TagManager:
   - pianoR
   - viola
   - Particles
+  - Loader
   layers:
   - Default
   - TransparentFX

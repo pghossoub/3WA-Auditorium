@@ -6,7 +6,7 @@ public class MusicBox : MonoBehaviour
 {
     public string musicName;
     public float volumePerParticle;
-    private float volumeLoss = 0.05f;
+    public float volumeLoss = 0.05f;
     public FloatVariable m_volume;
     public GameObject[] bars;
 
@@ -31,7 +31,7 @@ public class MusicBox : MonoBehaviour
         if (_audioSource.volume < 1)
             _audioSource.volume += volumePerParticle;
 
-        drawBars();
+        DrawBars();
 
     }
 
@@ -39,15 +39,14 @@ public class MusicBox : MonoBehaviour
     {
         while (true)
         {
-            //Debug.Log("Volume Loss");
             yield return new WaitForSeconds(0.05f);
             if (_audioSource.volume > 0)
                 _audioSource.volume -= volumeLoss;
-            drawBars();
+            DrawBars();
         }
     }
 
-    private void drawBars()
+    private void DrawBars()
     {
         int i = 1;
         foreach (GameObject bar in bars)
@@ -59,5 +58,4 @@ public class MusicBox : MonoBehaviour
             i++;
         }
     }
-
 }
